@@ -1,10 +1,10 @@
 # Spring Auth JT
 
-This is reworked from a Spring Boot Authentication series that starts with this [tutorial](https://www.youtube.com/watch?v=R76S0tfv36w) which is expanded upon further with [JWTs](https://www.youtube.com/watch?v=NcLtLZqGu2M) and [Refresh Tokens](https://www.youtube.com/watch?v=Wp4h_wYXqmU).
+This is reworked from a Spring Boot Authentication series that starts with this [tutorial](https://www.youtube.com/watch?v=R76S0tfv36w), which is expanded upon further with [JWTs](https://www.youtube.com/watch?v=NcLtLZqGu2M) and [Refresh Tokens](https://www.youtube.com/watch?v=Wp4h_wYXqmU).
 
-Some shortcuts were taken in the tutorial and I have tried to undo some bad practices.  The video series is worthwhile as a starting point and I have used it to give me some context of prior Spring Boot authentication implementation practices.  Even though the videos are fairly recent - some implementation details are now out of date.  Implementation details do change fairly frequently and it helps to be aware of the various past implementations to help convert to newer practices.  Most of the changes were confined to the Spring Configuration implementation.  
+Some shortcuts were taken in the tutorial, and I have tried to undo some bad practices. The video series is worthwhile as a starting point, and I have used it to give me some context on prior Spring Boot authentication implementation practices. Even though the videos are fairly recent, some implementation details are now out of date. Implementation details do change fairly frequently, and it helps to be aware of the various past implementations to help convert to newer practices. Most of the changes were confined to the Spring Configuration implementation.
 
-Unlike the video, I have used h2-console and made the necessary tweaks to have h2-console work with Spring Security.   
+Unlike the video, I have used h2-console and made the necessary tweaks to have h2-console work with Spring Security.
 
 ## Screenshots
 
@@ -46,19 +46,18 @@ Unlike the video, I have used h2-console and made the necessary tweaks to have h
 
 ## Thoughts
  
-- authorizeHttpRequests() implementation has changed - it takes a callback and you set the allowed routes as the return object
+- The `authorizeHttpRequests()` method has changed; it takes a lambda, and you set the allowed routes as the return object.
 - The new implementation helps eliminate chaining and having to use `.and()`.   
-- formLogin() deprecated and changed to use same pattern as authorizeHttpRequests()
-- VS Code didn't suggest an import for withDefaults()
+- `formLogin()` was deprecated and changed to use the same pattern as authorizeHttpRequests().
+- VS Code didn't suggest an import for `withDefaults()`.
 - "ROLE_" is a hassle that has to be accounted for when setting up role access.  However, hasRole does prepend "ROLE_" to the string you pass it.  
-- name vs username variable - better to have the variable match the entity field name (unless not possible) ?  
-- Slight differences in route names from second video to third video.  "/new" changed to "/signup" and "/authenticate" changed to "/login".  
-- 302 Error Code on users/new post request if you don't disable CSRF
-- Weird that most errors return 302 versus 400.  
-- Using h2-console with spring security can be problematic - need to disable headers, allow access to the route and worry about x-frame-options (iframe will be denied)
-- when logged in as an admin user and you go to a user role protected route, the error message is 403 but it still shows the fallback error page
-- Refresh token string would need to be saved on frontend and then you would send request to backend when token got close to expiration time 
-- allkeysgenerator site was not working when I checked - used openssl command to generate the secret key for jwt.  Better to put secret inside application properties and use variable to access it.  
+- name vs. username variable: better to have the variable match the entity field name (unless not possible) ?  
+- Slight differences in route names from the second video to the third video.  `/new` was changed to `/signup` and `/authenticate` was changed to `/login`.  
+- 302 Error Code on users/new post requests if you don't disable CSRF.
+- Using h2-console with Spring Security can be problematic. You need to disable headers, allow access to the routes, and worry about x-frame-options (iframe will be denied).
+- When you are logged in as an admin user and go to a user role protected route, the error message is 403, but the fallback error page still appears.
+- The refresh token string would need to be saved on the frontend and then you would send a request to the backend when the token is close to its expiration time. 
+-  The`allkeysgenerator` website was not working when I checked, so I used an `openssl` command to generate the secret key for the JWT. It is better to put the secret key inside the application properties file and use an environment variable to access it. This can be done with an annotation.
 
 ## Useful Resources
 
