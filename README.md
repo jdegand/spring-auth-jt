@@ -59,6 +59,17 @@ Unlike the video, I have used h2-console and made the necessary tweaks to have h
 - The refresh token string would need to be saved on the frontend and then you would send a request to the backend when the token is close to its expiration time. 
 -  The`allkeysgenerator` website was not working when I checked, so I used an `openssl` command to generate the secret key for the JWT. It is better to put the secret key inside the application properties file and use an environment variable to access it. This can be done with an annotation.
 
+## Continued Development
+
+- Some endpoints just return `String`.  This causes problems in the frontend, as you usually need json.  You can change endpoints to use a `ResponseEntity`.
+- The application needs more DTO objects.  You will also need mappers to convert objects.    
+- Roles should not be passed on login.
+- AuthRequest should use email instead of name.  
+- Validation.  Email or name have to be unique.  
+- JWT Secret has to be hidden.  
+- Poor Lombok usage.  I think @Entity and @Data are problematic together.  `@Data` can generate poor `toString`, `equals` and `hashCode` methods.  See [Stack Overflow](https://stackoverflow.com/questions/40516058/lombok-data-and-builder-on-same-entity) for more.  
+- UserDetails can implemented with adapter pattern.   
+
 ## Useful Resources
 
 - [Stack Overflow](https://stackoverflow.com/questions/41946473/springboot-security-hasrole-not-working) - hasRole not working
