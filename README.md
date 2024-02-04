@@ -68,7 +68,7 @@ Unlike the video, I have used h2-console and made the necessary tweaks to have h
 - Validation.  Email or name have to be unique.  
 - JWT Secret has to be hidden.  
 - Poor Lombok usage.  I think @Entity and @Data are problematic together.  `@Data` can generate poor `toString`, `equals` and `hashCode` methods.  See [Stack Overflow](https://stackoverflow.com/questions/40516058/lombok-data-and-builder-on-same-entity) for more.  
-- UserDetails can implemented with adapter pattern.   
+- UserDetails can be implemented with adapter pattern.   
 
 ## Useful Resources
 
