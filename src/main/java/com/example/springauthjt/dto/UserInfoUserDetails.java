@@ -13,6 +13,8 @@ import com.example.springauthjt.entity.UserInfo;
 
 public class UserInfoUserDetails implements UserDetails {
 
+    // private UserInfo userInfo;
+
     private String name;
     private String password;
     private List<GrantedAuthority> authorities;

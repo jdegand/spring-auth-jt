@@ -61,14 +61,15 @@ Unlike the video, I have used h2-console and made the necessary tweaks to have h
 
 ## Continued Development
 
-- Some endpoints just return `String`.  This causes problems in the frontend, as you usually need json.  You can change endpoints to use a `ResponseEntity`.
-- The application needs more DTO objects.  You will also need mappers to convert objects.    
-- Roles should not be passed on login.
-- AuthRequest should use email instead of name.  
+- Some endpoints just return `String`.  This causes problems in the frontend, as you usually need json.  You can change endpoints to use a `ResponseEntity` or you can create a standard response class that you can use for all endpoints.   
+- Roles should not be passed on login.  Role can be set inside the `addUser` method.  If you do it this way, an admin user would probably have to be set by directly manipulating the database.    
+- `AuthRequest` should use email instead of name.  
 - Validation.  Email or name have to be unique.  
 - JWT Secret has to be hidden.  
 - Poor Lombok usage.  I think @Entity and @Data are problematic together.  `@Data` can generate poor `toString`, `equals` and `hashCode` methods.  See [Stack Overflow](https://stackoverflow.com/questions/40516058/lombok-data-and-builder-on-same-entity) for more.  
-- UserDetails can be implemented with adapter pattern.   
+- `UserInfoUserDetails` class is an example of the adapter pattern.   
+- `UserInfoUserDetails` could just take a `UserInfo` object versus setting name and password fields with the UserInfo object in the constructor.  This is a little unusual.  You usually see the whole object being passed.    
+- Global CORS Configuration
 
 ## Useful Resources
 
