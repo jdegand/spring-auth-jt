@@ -36,7 +36,7 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts
-                .parserBuilder()
+                .parserBuilder() // this overload may be deprecated in 12+
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
@@ -58,6 +58,7 @@ public class JwtService {
     }
 
     private String createToken(Map<String, Object> claims, String name) {
+        // deprecated in 12+
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(name)

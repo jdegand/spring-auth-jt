@@ -70,6 +70,7 @@ Unlike the video, I have used h2-console and made the necessary tweaks to have h
 - `UserInfoUserDetails` class is an example of the adapter pattern.   
 - `UserInfoUserDetails` could just take a `UserInfo` object versus setting name and password fields with the UserInfo object in the constructor.  This is a little unusual.  You usually see the whole object being passed.    
 - Global CORS Configuration
+- Replace deprecated methods and update JSON Web Token verison
 
 ## Useful Resources
 
