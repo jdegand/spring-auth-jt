@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,7 @@ public class RefreshToken {
 
     private Instant expiryDate;
 
-    @OneToOne
+    @ManyToOne // @OneToOne causes problems unless you proactively delete refresh tokens
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserInfo userInfo;
 }
